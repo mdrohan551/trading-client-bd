@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "NexaBold";
+    src: url(assests/font/NexaBold.woff);
+}
+
+@font-face {
+    font-family: "DMFontThin";
+    src: url(assests/font/DMSans_18pt-Thin.ttf);
+}
+
+@font-face {
+    font-family: "DMFontBold";
+    src: url(assests/font/DMSans_18pt-Bold.ttf)
+}
+
+@font-face {
+    font-family: "DMFontLight";
+    src: url(assests/font/DMSans_18pt-Light.ttf);
+}
+
+@font-face {
+    font-family: "DMFontEtraLight";
+    src: url(assests/font/DMSans_18pt-ExtraLight.ttf)
+}
+
+@font-face {
+    font-family: "DMFontThin";
+    src: url(assests/font/DMSans_18pt-Thin.ttf);
+}
+
+@font-face {
+    font-family: "DMFontThin";
+    src: url(assests/font/DMSans_18pt-Thin.ttf);
+}
+
+
+@layer base {
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+   
+
+
+    }
+}
+
+@layer components {
+    .blinking-cursor {
+        display: inline-block;
+        width: 1px;
+        background-color: white;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+
+        25%, 75% {
+            opacity: 0;
+        }
+    }
+
+
+    /* tailwind.css or global.css */
+    .custom-cursor {
+        transition: transform 0.15s ease-out;
+    }
+
+    .angle {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 3% 100%, 0 0);
+
+
+
+
+    }
+
+    @keyframes ringFade {
+        0% {
+            border: 2px solid #ffffff;
+
+            /* white */
+        }
+
+        50% {
+            border: 2px solid #EB5B00;
+
+            /* primary */
+        }
+
+        100% {
+            border: 2px solid #ffffff;
+
+        }
+    }
+
+    .ring-animate {
+        animation: ringFade 2s infinite;
+        /* adjust duration */
+    }
+}
+
+@theme {
+    --color-primary: #EB5B00;
+    --font-nexa-bold: 'NexaBold', sans-serif;
+    --font-dm-thin: 'DMFontThin', sans-serif;
+    --font-dm-Bold: 'DMFontBold', sans-serif;
+    --font-dm-Light: 'DMFontLight', sans-serif;
+    --font-dm-ExLight: 'DMFontEtraLight', sans-serif;
+
+}
