@@ -42,7 +42,7 @@ const Oursuccess: React.FC = () => {
   return (
     <div
       ref={sectionRef}
-      className="py-20 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-gray-50 via-white to-gray-100 rounded-3xl shadow-sm overflow-hidden"
+      className="py-5 sm:py-20 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-gray-50 via-white to-gray-100 rounded-3xl shadow-sm overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -56,75 +56,76 @@ const Oursuccess: React.FC = () => {
         />
       </motion.div>
 
-      <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 justify-items-center">
-        {segmentData.map((item, index) => (
-          <motion.div
-            key={index}
-            className="w-full max-w-[280px] flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 sm:p-8"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            custom={index}
-            viewport={{ once: true }}
-          >
-            {/* Donut Chart */}
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center">
-              <svg
-                viewBox="0 0 36 36"
-                className="w-full h-full transform -rotate-90"
-              >
-                {(() => {
-                  let total = 0;
-                  return item.segments.map((seg, i) => {
-                    const circle = (
-                      <circle
-                        key={i}
-                        cx="18"
-                        cy="18"
-                        r="15.915"
-                        fill="none"
-                        stroke={seg.color}
-                        strokeWidth="4"
-                        strokeDasharray="0, 100"
-                        data-value={seg.value}
-                        className="progress-circle"
-                        strokeDashoffset={-total}
-                        strokeLinecap="round"
-                      />
-                    );
-                    total += (seg.value / 100) * 100;
-                    return circle;
-                  });
-                })()}
-              </svg>
-
-              {/* Inner Text */}
-              <div className="absolute bg-white w-28 h-28 sm:w-32 sm:h-32 rounded-full flex items-center justify-center shadow-inner">
-                <p className="text-center text-xs sm:text-sm font-semibold text-gray-700 px-2">
-                  {item.title}
-                </p>
-              </div>
-            </div>
-
-            {/* Info Below Donut */}
-            <div className="mt-5 space-y-2 text-start w-full">
-              {item.segments.map((seg, i) => (
-                <div
+<div className="mt-14 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+  {segmentData.map((item, index) => (
+    <motion.div
+      key={index}
+      className="w-full max-w-[280px] sm:max-w-[260px] flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-4 sm:p-6"
+      variants={fadeInUp}
+      initial="hidden"
+      whileInView="visible"
+      custom={index}
+      viewport={{ once: true }}
+    >
+      {/* Donut Chart */}
+      <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+        <svg
+          viewBox="0 0 36 36"
+          className="w-full h-full transform -rotate-90"
+        >
+          {(() => {
+            let total = 0;
+            return item.segments.map((seg, i) => {
+              const circle = (
+                <circle
                   key={i}
-                  className="text-xs sm:text-sm font-medium text-gray-700 flex gap-2 items-center"
-                >
-                  <span
-                    className="inline-block w-3 h-3 rounded-full"
-                    style={{ backgroundColor: seg.color }}
-                  ></span>
-                  <span>{seg.label}:</span>
-                  <span className="font-semibold">{seg.value}%</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+                  cx="18"
+                  cy="18"
+                  r="15.915"
+                  fill="none"
+                  stroke={seg.color}
+                  strokeWidth="4"
+                  strokeDasharray="0, 100"
+                  data-value={seg.value}
+                  className="progress-circle"
+                  strokeDashoffset={-total}
+                  strokeLinecap="round"
+                />
+              );
+              total += (seg.value / 100) * 100;
+              return circle;
+            });
+          })()}
+        </svg>
+
+        {/* Inner Text */}
+        <div className="absolute bg-white w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-inner">
+          <p className="text-center text-xs sm:text-sm font-semibold text-gray-700 px-2">
+            {item.title}
+          </p>
+        </div>
+      </div>
+
+      {/* Info Below Donut */}
+      <div className="mt-4 sm:mt-5 space-y-2 text-start w-full">
+        {item.segments.map((seg, i) => (
+          <div
+            key={i}
+            className="text-xs sm:text-sm font-medium text-gray-700 flex gap-2 items-center"
+          >
+            <span
+              className="inline-block w-3 h-3 rounded-full"
+              style={{ backgroundColor: seg.color }}
+            ></span>
+            <span>{seg.label}:</span>
+            <span className="font-semibold">{seg.value}%</span>
+          </div>
         ))}
       </div>
+    </motion.div>
+  ))}
+</div>
+
     </div>
   );
 };

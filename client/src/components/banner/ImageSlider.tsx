@@ -28,15 +28,14 @@ const ImageSlider: React.FC<ExtendedImageSliderProps> = ({
   return (
     <div className="relative w-full mx-auto overflow-hidden rounded-3xl">
       {/* 🖼️ Image Container */}
-      <div className="relative w-full h-[450px] sm:h-[300px] md:h-[600px]">
+      <div className="relative w-full h-[300px] sm:h-[300px] md:h-[600px]">
         {images.map((img, idx) => (
           <img
             key={idx}
             src={img}
             alt={`Slide ${idx}`}
-            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-              idx === current ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${idx === current ? "opacity-100" : "opacity-0"
+              }`}
           />
         ))}
 
@@ -45,10 +44,11 @@ const ImageSlider: React.FC<ExtendedImageSliderProps> = ({
 
         {/* 🧱 Content Layer (Two Columns without absolute positioning) */}
         <div className="relative z-10 w-full h-full flex items-center px-5 md:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1 sm:gap-10 items-center w-full">
             {children}
           </div>
         </div>
+
       </div>
 
       {/* ◀️ Prev Button */}
@@ -73,9 +73,8 @@ const ImageSlider: React.FC<ExtendedImageSliderProps> = ({
           <div
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`w-6 h-1 rounded cursor-pointer transition-all duration-300 ${
-              current === idx ? "bg-primary" : "bg-gray-400"
-            }`}
+            className={`w-3 sm:w-6 h-[0.1rem] sm:h-1 rounded cursor-pointer transition-all duration-300 ${current === idx ? "bg-primary" : "bg-gray-400"
+              }`}
           />
         ))}
       </div>

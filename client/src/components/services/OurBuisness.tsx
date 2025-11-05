@@ -27,7 +27,7 @@ const OurBuisness: React.FC = () => {
       {chunkedData.map((group, groupIdx) => (
         <div
           key={groupIdx}
-          className={`grid gap-8 mb-10 ${
+          className={`grid gap-8 mb-10 mt-2 ${
             group.length === 3
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
               : "grid-cols-1 sm:grid-cols-2"
