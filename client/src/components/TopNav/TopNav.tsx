@@ -3,10 +3,10 @@ import { headerContact, headerSocialMenu } from "../../constant/Demodata";
 
 const TopNav: React.FC = () => {
   return (
-    <div className="max-w-[1536px] mx-auto flex justify-between items-center">
+    <div className="max-w-[1536px] mx-auto flex   justify-between items-center py-4">
 
 
-      <ul className="flex gap-5 px-5 ">
+      <ul className="flex gap-3 sm:gap-5 px-3 sm:px-5 ">
         {headerSocialMenu.map((item, idx) => (
           <li
             key={idx}
@@ -23,7 +23,7 @@ const TopNav: React.FC = () => {
           </li>
         ))}
       </ul>
-      <ul className="flex ">
+      <ul className="flex gap-5 px-3 sm:px-5 ">
         {headerContact.map((item, idx) => {
           // ✅ href logic
           let href = "#";
@@ -34,7 +34,7 @@ const TopNav: React.FC = () => {
           return (
             <li
               key={idx}
-              className="flex items-center px-5 py-5 font-dm-Light text-sm"
+              className="flex items-center  font-dm-Light text-sm"
             >
               <a
                 href={href}
@@ -43,7 +43,7 @@ const TopNav: React.FC = () => {
                 className="flex items-center hover:text-primary transition-colors duration-200"
               >
                 <item.icon size="15px" />
-                <span className="ml-2">{item.label}</span>
+                <span className="ml-2 sm:block hidden">{item.label}</span>
               </a>
             </li>
           );

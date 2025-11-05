@@ -4,7 +4,6 @@ import ImageSlider from "./ImageSlider";
 import { images, sliderTexts } from "../../constant/Demodata";
 import MapAnimation from "../Animation/MapAnimation";
 
-
 const Banner: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [time, setTime] = useState(
@@ -24,7 +23,7 @@ const Banner: React.FC = () => {
     };
   }, []);
 
-  // Auto change slider & text every 5s
+  // Auto change slider & text every 7s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -34,9 +33,10 @@ const Banner: React.FC = () => {
 
   return (
     <ImageSlider images={images}>
-      <div className="text-left text-white space-y-6">
+      {/* ===== LEFT COLUMN ===== */}
+      <div className="text-left text-white space-y-4 sm:space-y-6 z-20 relative">
         {/* Top small label */}
-        <p className="font-nexa-bold font-normal px-3 py-2 bg-white/20 w-fit rounded-xl backdrop-blur-md ring-[0.5px]">
+        <p className="sm:font-nexa-bold font-dm-Light sm:text-sm text-[0.7rem] px-1 sm:px-3 py-1 sm:py-2 bg-white/20 w-fit rounded-xl backdrop-blur-md ring-[0.5px]">
           Unmatched World wide Reach
         </p>
 
@@ -48,10 +48,10 @@ const Banner: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-dm-ExLight leading-15"
+            className="text-2xl sm:text-4xl md:text-6xl font-dm-ExLight leading-5 sm:leading-15"
           >
             {sliderTexts[currentIndex].h1}{" "}
-            <span className="text-primary font-nexa-bold inline-flex items-center gap-1">
+            <span className="text-primary text-3xl sm:text-6xl font-nexa-bold inline-flex items-center gap-0 ">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: "30px" }}
@@ -62,22 +62,30 @@ const Banner: React.FC = () => {
             </span>
             {/* span on new line */}
             {sliderTexts[currentIndex]?.span && (
-              <span className="block mt-2">
+              <span className="block -mt-2 sm:mt-2 text-2xl sm:text-6xl">
                 {sliderTexts[currentIndex].span}
               </span>
             )}
           </motion.h1>
         </AnimatePresence>
 
-
         {/* Button */}
-        <button className="px-6 rounded-lg cursor-pointer py-3 hover:bg-white/20 backdrop-blur-sm ring-primary ring-1 bg-primary text-white transition-colors">
+        <button className="sm:text-sm font-dm-Light text-[0.8rem] px-2 sm:px-6 rounded-lg cursor-pointer py-1 sm:py-3 hover:bg-white/20 backdrop-blur-sm ring-primary ring-1 bg-primary text-white transition-colors">
           Get Started
         </button>
       </div>
 
-      {/* Right Column (Profile + Map + Card) */}
-      <div className="relative mt-0 max-w-md mx-auto w-full h-auto">
+      {/* ===== RIGHT COLUMN ===== */}
+      <div
+        className="
+          sm:relative absolute 
+          sm:top-auto top-[20%] 
+          sm:left-auto left-1/2 sm:-translate-x-0 -translate-x-1/2 
+          sm:translate-y-0 -translate-y-[10%]
+          sm:opacity-100 opacity-60
+          max-w-md mx-auto  h-auto
+        "
+      >
         {/* Profile Image Animation */}
         <motion.div
           initial={{
@@ -99,7 +107,7 @@ const Banner: React.FC = () => {
             borderRadius: introFinished ? "0.75rem" : "1rem",
           }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute z-20 overflow-hidden ring-animate"
+          className="absolute z-20 overflow-hidden ring-animate hidden sm:block"
         >
           <img
             src="/images/Suman.jpg"
@@ -125,18 +133,18 @@ const Banner: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: introFinished ? 1 : 0 }}
           transition={{ duration: 1 }}
-          className="bg-white/20 backdrop-blur-md border border-white/20 rounded-2xl text-white shadow-lg w-full h-auto px-2 relative mt-24"
+          className="sm:bg-white/20 sm:backdrop-blur-md sm:border  border-white/20 rounded-2xl text-white shadow-lg w-full h-auto px-2 relative mt-0 sm:mt-24"
         >
           {/* Header */}
-          <div className="container pt-2 flex items-center gap-2">
-            <div className="w-10 h-10">
+          <div className="container hidden sm:block pt-2 sm:flex items-center gap-2 px-5 sm:px-0">
+            <div className="w-5 h-5 sm:w-10 sm:h-10 ">
               <img
                 src="/images/flag.png"
                 className="w-full h-full p-1 rounded-full"
                 alt="flag"
               />
             </div>
-            <p className="font-dm-Light text-sm text-gray-300">
+            <p className="font-dm-Light text-[0.7rem] sm:text-sm text-gray-300">
               Bangladesh (GMT+6){" "}
               <span className="text-primary font-bold text-md bg-black px-2 py-1 rounded-md">
                 {time}
@@ -145,7 +153,7 @@ const Banner: React.FC = () => {
           </div>
 
           {/* Info Section */}
-          <div className="absolute bottom-2 right-3 mt-6">
+          <div className="absolute bottom-2 right-3 mt-6 hidden sm:block">
             <div className="flex items-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-3 py-2 shadow-lg text-white relative z-10 ml-12">
               <div>
                 <h2 className="font-nexa-bold text-lg mb-1">

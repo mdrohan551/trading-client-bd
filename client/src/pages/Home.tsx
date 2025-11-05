@@ -61,21 +61,22 @@ const Home = (): React.ReactElement => {
         <Banner />
       </div>
       <CompaniesLogo />
-      <div className='grid grid-cols-12 container mx-auto mt-10 sm:px-3  md:px-3 px-3'>
-        <div className="col-span-6">
+      <div className='grid grid-cols-12 container mx-auto mt-0 sm:mt-10 sm:px-3 md:px-3 px-3 gap-6'>
+        <div className="col-span-12 md:col-span-6">
           <ServicesText />
         </div>
-        <div className="col-span-6 ">
+        <div className="col-span-12 md:col-span-6">
           <ServicesImage />
         </div>
       </div>
-      <div className='container mx-auto mt-15 bg-primary/3 rounded-2xl'>
+
+      <div className='container mx-auto mt-0 sm:mt-15 bg-primary/3 rounded-2xl'>
         <OurBuisness />
       </div>
-      <div className="container mx-auto mt-20">
+      <div className="container mx-auto mt-0 sm:mt-20">
         <OwnerSection />
       </div>
-      <div className=" container mx-auto mt-20">
+      <div className=" container mx-auto mt-0 sm:mt-20">
         <Oursuccess />
       </div>
       <div className=" bg-gradient-to-r from-gray-900 via-gray-850 to-gray-900 p-6 rounded-t-[3rem]">

@@ -88,11 +88,11 @@ const ServicesImage: React.FC = () => {
 
   return (
     <div className="p-6 md:p-10">
-      <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:min-h-[480px]">
+      <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4">
         {servicesimages.map((img, idx) => (
           <motion.div
             key={img.id}
-            className={`relative rounded-3xl overflow-hidden cursor-pointer group ${idx === 0 ? "md:row-span-2" : ""}`}
+            className={`relative rounded-3xl overflow-hidden cursor-pointer group w-full h-64 md:h-auto ${idx === 0 ? "md:row-span-2" : ""}`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -109,23 +109,23 @@ const ServicesImage: React.FC = () => {
               alt={img.alt}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-    <div
-  ref={(el) => {
-    overlayRefs.current[idx] = el!; // ✅ no return
-  }}
-  className="absolute inset-0 bg-black/40 flex items-center justify-center"
->
-  <img
-    src={img.overlay}
-    alt="Overlay"
-    className="w-2/3 h-2/3 object-cover rounded-2xl shadow-lg"
-  />
-</div>
-
+            <div
+              ref={(el) => {
+                overlayRefs.current[idx] = el!;
+              }}
+              className="absolute inset-0 bg-black/40 flex items-center justify-center"
+            >
+              <img
+                src={img.overlay}
+                alt="Overlay"
+                className="w-2/3 h-2/3 object-cover rounded-2xl shadow-lg"
+              />
+            </div>
           </motion.div>
         ))}
       </div>
     </div>
+
   );
 };
 

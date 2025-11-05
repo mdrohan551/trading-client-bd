@@ -11,7 +11,7 @@ const ServicesText: React.FC = () => {
 
   return (
     <motion.div
-      className="flex flex-col justify-center py-16 space-y-6"
+      className="flex flex-col justify-center py-5 sm:py-16 space-y-3 sm:space-y-6"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -29,16 +29,15 @@ const ServicesText: React.FC = () => {
 
       {/* Title */}
       <motion.h1
-        className="text-4xl md:text-5xl font-semibold leading-tight text-gray-800"
+        className="text-2xl sm:text-4xl md:text-5xl font-semibold leading-snug sm:leading-tight text-gray-800"
         variants={containerVariants}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        Navigate global trade with <br /> trusted ocean logistics
+        Navigate global trade with <br className="hidden sm:block" /> trusted ocean logistics
       </motion.h1>
 
-      {/* Paragraphs */}
       <motion.p
-        className="text-gray-600 text-lg leading-relaxed"
+        className="text-gray-600 text-sm sm:text-lg md:text-lg leading-relaxed"
         variants={containerVariants}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
@@ -47,7 +46,7 @@ const ServicesText: React.FC = () => {
       </motion.p>
 
       <motion.p
-        className="text-gray-600 text-lg leading-relaxed"
+        className="text-gray-600 text-sm sm:text-lg leading-relaxed"
         variants={containerVariants}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
@@ -60,7 +59,7 @@ const ServicesText: React.FC = () => {
         variants={containerVariants}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <button className="px-6 rounded-lg py-3 hover:bg-white/20 backdrop-blur-sm ring-primary ring-1 bg-primary text-white hover:text-primary cursor-pointer transition-all flex items-center gap-2">
+        <button className="text-sm px-2 sm:px-6 rounded-lg py-1 sm:py-3 hover:bg-white/20 backdrop-blur-sm ring-primary ring-1 bg-primary text-white hover:text-primary cursor-pointer transition-all flex items-center gap-2">
           <span>Ship now</span>
           <ArrowUpRight size={18} />
         </button>
