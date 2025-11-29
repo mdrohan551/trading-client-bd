@@ -1,12 +1,18 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
+import type { Variants } from "framer-motion"; // ✅ type-only import
 
 // Framer Motion variants
-const textVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+const textVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: easeOut } // ✅ use function
+  }),
 };
+
 
 const ServicesText: React.FC = () => {
     // Determine text colors based on context (white for large screens, black for small screens)

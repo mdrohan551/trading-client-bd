@@ -4,7 +4,7 @@ import { MapData } from "../../constant/Demodata";
 
 const MapSection: React.FC = () => {
   return (
-    <div className="w-100 h-full mt-8 overflow-hidden rounded-2xl shadow-lg border border-gray-200">
+    <div className="w-full h-full mt-8 overflow-hidden rounded-2xl shadow-lg border border-gray-200">
       <iframe
         src={MapData.mapLink}
         width="100%"

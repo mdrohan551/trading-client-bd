@@ -5,7 +5,7 @@ import { ArrowUpRight, Clock, RotateCcw } from "lucide-react";
 import ServicesText from "./ServicesText";
 import { Link } from "react-router-dom";
 import { Package, Ship, Utensils, Zap } from "lucide-react";
-
+import { easeInOut, easeOut } from "framer-motion";
 // Ship Chandle Features Data (Unchanged)
 const shipChandleFeatures = [
   { id: 1, title: "Provision Supply", description: "Fresh, frozen, and dry provisions tailored to international dietary standards.", icon: Utensils },
@@ -19,25 +19,26 @@ const featureVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5 },
+    transition: { delay: i * 0.1, duration: 0.5, ease: easeOut },
   }),
 };
 
 const sectionVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 1 } },
+  visible: { opacity: 1, transition: { duration: 1, ease: easeInOut } },
 };
 
 const cardVariants = {
   hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
 const ServicesImage: React.FC = () => {
   // Original video is always the first one
   const mainOriginalVideo = servicesimages[0];
 
-  const [currentVideo, setCurrentVideo] = useState(servicesimages[0]);
+  const [currentVideo, setCurrentVideo] = useState<typeof servicesimages[0] | null>(servicesimages[0]);
+
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const mainVideoRef = useRef<HTMLVideoElement>(null);
@@ -70,10 +71,26 @@ const ServicesImage: React.FC = () => {
   }, [isInView]);
 
   // Handle smooth video change
-  const handleVideoChange = (videoCard: typeof servicesimages[0]) => {
-    setCurrentVideo(null); // Remove old video
-    setTimeout(() => setCurrentVideo(videoCard), 50); // Small delay to reset
-  };
+const handleVideoChange = (videoCard: typeof servicesimages[0]) => {
+  if (!mainVideoRef.current) return;
+
+  // Pause current video before changing
+  mainVideoRef.current.pause();
+  mainVideoRef.current.currentTime = 0;
+
+  // Remove old video for React re-render
+  setCurrentVideo(null);
+
+  // Set new video after small delay to reset React element
+  setTimeout(() => {
+    setCurrentVideo(videoCard);
+    // Ensure it plays automatically on mobile
+    setTimeout(() => {
+      mainVideoRef.current?.play().catch(() => {});
+    }, 50);
+  }, 50);
+};
+
 
   // --- RESET SYSTEM ---
   const handleResetVideo = useCallback(() => {

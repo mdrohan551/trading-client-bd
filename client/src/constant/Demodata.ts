@@ -1,5 +1,5 @@
 
-import type { BusinessImage, BusinessItem, companilogo, ExtraInfoItem, FormField, HeaderContact, HeaderSocialMenu, MenuItem, Segmentsuccess, ServiceImage, SliderText, User } from "../AllTypes/AuthInterface";
+import type {  BusinessItem, companilogo, ExtraInfoItem, FormField, HeaderContact, HeaderSocialMenu, MenuItem, Segmentsuccess, ServiceImage, SliderText, User } from "../AllTypes/AuthInterface";
 import { Home, Info, PackageCheck, UploadCloud, DownloadCloud, Settings, Image, LocationEdit, PhoneCall, Mail } from "lucide-react";
 import { IoLogoInstagram, IoLogoYoutube } from "react-icons/io";
 import { FaFacebookF, FaLinkedinIn, FaShip, FaExchangeAlt, FaStore, FaCogs, FaBoxOpen } from "react-icons/fa";
