@@ -4,10 +4,12 @@ import './index.css'
 import AppRouter from './AppRouter'
 import { Provider } from 'react-redux'
 import { store } from './redux/store/Store'
+import BackToTop from './components/BackToTop'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <BackToTop/>
     <Provider store={store}>
 
     <AppRouter />

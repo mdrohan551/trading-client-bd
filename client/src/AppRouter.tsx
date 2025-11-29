@@ -3,20 +3,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Loader from "./Layout/Loader";
 import Notfound from "./Layout/Notfound";
 import { Toaster } from "react-hot-toast";
+import BusinessDetails from "./components/OurBuisness/BusinessDetails";
 
-// 👇 Lazy loaded components
-const Home = lazy(() => import("../src/pages/Home"));
+// Lazy loaded components
+const Home = lazy(() => import("./pages/Home")); // ✅ fixed path
 
-const AppRouter: React.FC = (): React.ReactElement => {
+const AppRouter: React.FC = () => {
   return (
     <>
       <Toaster position="top-center" />
       <BrowserRouter>
-        {/* Suspense handles lazy component loading */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="*" element={<Notfound />} />
             <Route path="/" element={<Home />} />
+            <Route path="/business-details/:id" element={<BusinessDetails />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

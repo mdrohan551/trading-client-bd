@@ -76,30 +76,25 @@ export interface companilogo {
 }
 
 
-// services image type
+// ServiceImage type/interface
 export interface ServiceImage {
   id: number;
-  src: string;
+  src: string;       // legacy image src (kept for backward compatibility)
   alt: string;
-  overlay: string
+  overlay: string;
+  video?: string;    
 }
+
 
 // OUR SERVICES
 export interface BusinessItem {
+  id:number;
   title: string;
   description: string;
   icon: React.ElementType;
   Link: string;
 }
 
-// OUR BUISNESS 
-export interface BusinessImage {
-  src: string;
-  alt: string;
-  title: string;
-  des: string;
-  href: string;
-}
 
 // Owner Section
 export interface OwnerData {

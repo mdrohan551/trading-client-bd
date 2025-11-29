@@ -2,70 +2,70 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Framer Motion variants
+const textVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
 const ServicesText: React.FC = () => {
-  // Framer Motion variants
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+    // Determine text colors based on context (white for large screens, black for small screens)
+    const titleColor = "text-gray-500 md:text-white text-gray-800"; // Mobile: text-gray-800, Desktop: text-white
+    const textColor = "text-gray-300 md:text-gray-300 text-gray-600"; // Mobile: text-gray-600, Desktop: text-gray-300
 
-  return (
-    <motion.div
-      className="flex flex-col justify-center py-5 sm:py-16 space-y-3 sm:space-y-6"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={containerVariants}
-      transition={{ duration: 0.6 }}
-    >
-      {/* Tag */}
-      <motion.div
-        className="inline-block bg-primary text-white text-sm font-bold px-4 py-1 rounded-full w-fit"
-        variants={containerVariants}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        Service Overview
-      </motion.div>
+    return (
+        <motion.div
+            // Mobile: full width, Desktop: half-width
+            className="flex flex-col justify-center py-5 sm:py-16 space-y-3 sm:space-y-6 w-full" 
+            initial="hidden"
+            whileInView="visible"    // Scroll into view trigger
+            viewport={{ once: true, amount: 0.3 }} // Trigger when 30% visible
+            variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+        >
+            {/* Tag - Text Color adjusted */}
+            <motion.div
+                className="inline-block bg-primary/20 text-gray-900 md:text-white text-sm font-light px-4 py-2 rounded-full w-fit pointer-events-auto"
+                variants={textVariants}
+            >
+                Service Overview
+            </motion.div>
 
-      {/* Title */}
-      <motion.h1
-        className="text-2xl sm:text-4xl md:text-5xl font-semibold leading-snug sm:leading-tight text-gray-800"
-        variants={containerVariants}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        Navigate global trade with <br className="hidden sm:block" /> trusted ocean logistics
-      </motion.h1>
+            {/* Title */}
+            <motion.h1
+                className={`text-xl sm:text-5xl font-dm-Bold capitalize md:text-6xl leading-snug sm:leading-15 tracking-tight drop-shadow-md ${titleColor}`}
+                variants={textVariants}
+            >
+                Navigate global trade with
+                <br className="hidden sm:block" /> trusted AOSLanD Trading Company
+            </motion.h1>
 
-      <motion.p
-        className="text-gray-600 text-sm sm:text-lg md:text-lg leading-relaxed"
-        variants={containerVariants}
-        transition={{ duration: 0.6, delay: 0.3 }}
-      >
-        Need to optimize production or deliver time-critical goods? Ocean Contract ensures
-        a smoother supply chain with flexible setup, clear insights, and reliable global delivery.
-      </motion.p>
+            {/* Paragraphs */}
+            <motion.p
+                className={`text-sm sm:text-lg md:text-sm leading-relaxed  ${textColor}`}
+                variants={textVariants}
+            >
+                For manufacturing and time-sensitive supply chains, Ocean Contract provides scalable
+                ocean capacity, structured allocation control, and reliable end-to-end delivery
+                performance.
+            </motion.p>
 
-      <motion.p
-        className="text-gray-600 text-sm sm:text-lg leading-relaxed"
-        variants={containerVariants}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        Ocean Contract provides you with access to real-time data on all your ocean lanes
-        with its Allocation Portal.
-      </motion.p>
+            <motion.p
+                className={`text-sm sm:text-lg md:text-sm  ${textColor}`}
+                variants={textVariants}
+            >
+                The Allocation Portal supplies real-time lane-level visibility, enabling dynamic allocation
+                decisions, disruption mitigation, and optimized lead-time management.
+            </motion.p>
 
-      {/* Button */}
-      <motion.div
-        variants={containerVariants}
-        transition={{ duration: 0.6, delay: 0.5 }}
-      >
-        <button className="text-sm px-2 sm:px-6 rounded-lg py-1 sm:py-3 hover:bg-white/20 backdrop-blur-sm ring-primary ring-1 bg-primary text-white hover:text-primary cursor-pointer transition-all flex items-center gap-2">
-          <span>Ship now</span>
-          <ArrowUpRight size={18} />
-        </button>
-      </motion.div>
-    </motion.div>
-  );
+            {/* Button */}
+            <motion.div variants={textVariants} className="pointer-events-auto">
+                <button className="text-sm px-6 rounded-lg py-3 ring-primary ring-1 bg-primary text-white hover:bg-white hover:text-primary transition-all flex items-center gap-2 shadow-lg">
+                    <span>Ship now</span>
+                    <ArrowUpRight size={18} />
+                </button>
+            </motion.div>
+        </motion.div>
+    );
 };
 
 export default ServicesText;
