@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { segmentData } from "../../constant/Demodata";
 import CommonSecTitle from "../CommonSecTitle";
 
-const fadeInUp:Variants = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: (i: number) => ({
     opacity: 1,
@@ -56,76 +56,73 @@ const Oursuccess: React.FC = () => {
         />
       </motion.div>
 
-<div className="mt-14 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
-  {segmentData.map((item, index) => (
-    <motion.div
-      key={index}
-      className="w-full max-w-[280px] sm:max-w-[260px] flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-4 sm:p-6"
-      variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
-      custom={index}
-      viewport={{ once: true }}
-    >
-      {/* Donut Chart */}
-      <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
-        <svg
-          viewBox="0 0 36 36"
-          className="w-full h-full transform -rotate-90"
-        >
-          {(() => {
-            let total = 0;
-            return item.segments.map((seg, i) => {
-              const circle = (
-                <circle
-                  key={i}
-                  cx="18"
-                  cy="18"
-                  r="15.915"
-                  fill="none"
-                  stroke={seg.color}
-                  strokeWidth="4"
-                  strokeDasharray="0, 100"
-                  data-value={seg.value}
-                  className="progress-circle"
-                  strokeDashoffset={-total}
-                  strokeLinecap="round"
-                />
-              );
-              total += (seg.value / 100) * 100;
-              return circle;
-            });
-          })()}
-        </svg>
-
-        {/* Inner Text */}
-        <div className="absolute bg-white w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-inner">
-          <p className="text-center text-xs sm:text-sm font-semibold text-gray-700 px-2">
-            {item.title}
-          </p>
-        </div>
-      </div>
-
-      {/* Info Below Donut */}
-      <div className="mt-4 sm:mt-5 space-y-2 text-start w-full">
-        {item.segments.map((seg, i) => (
-          <div
-            key={i}
-            className="text-xs sm:text-sm font-medium text-gray-700 flex gap-2 items-center"
+      <div className="mt-14 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+        {segmentData.map((item, index) => (
+          <motion.div
+            key={index}
+            className="w-full max-w-[280px] sm:max-w-[260px] flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-4 sm:p-6"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            custom={index}
+            viewport={{ once: true }}
           >
-            <span
-              className="inline-block w-3 h-3 rounded-full"
-              style={{ backgroundColor: seg.color }}
-            ></span>
-            <span>{seg.label}:</span>
-            <span className="font-semibold">{seg.value}%</span>
-          </div>
+            {/* Donut Chart */}
+            <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+              <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90">
+                {(() => {
+                  let cumulative = 0; // cumulative percentage
+                  return item.segments.map((seg, i) => {
+                    const dashArray = `${seg.value} ${100 - seg.value}`;
+                    const circle = (
+                      <circle
+                        key={i}
+                        cx="18"
+                        cy="18"
+                        r="15.915"
+                        fill="none"
+                        stroke={seg.color}
+                        strokeWidth="4"
+                        strokeDasharray={dashArray}
+                        strokeDashoffset={-cumulative}
+                        data-value={seg.value}
+                        className="progress-circle"
+                        strokeLinecap="round"
+                      />
+                    );
+                    cumulative += seg.value;
+                    return circle;
+                  });
+                })()}
+              </svg>
+
+              {/* Inner Text */}
+              <div className="absolute bg-white w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-inner">
+                <p className="text-center text-xs sm:text-sm font-semibold text-gray-700 px-2">
+                  {item.title}
+                </p>
+              </div>
+            </div>
+
+            {/* Info Below Donut */}
+            <div className="mt-4 sm:mt-5 space-y-2 text-start w-full">
+              {item.segments.map((seg, i) => (
+                <div
+                  key={i}
+                  className="text-xs sm:text-sm font-medium text-gray-700 flex gap-2 items-center"
+                >
+                  <span
+                    className="inline-block w-3 h-3 rounded-full"
+                    style={{ backgroundColor: seg.color }}
+                  ></span>
+                  <span>{seg.label}:</span>
+                  <span className="font-semibold">{seg.value}%</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         ))}
       </div>
-    </motion.div>
-  ))}
-</div>
-
     </div>
   );
 };

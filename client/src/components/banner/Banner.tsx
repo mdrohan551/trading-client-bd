@@ -48,10 +48,10 @@ const Banner: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.8 }}
-            className="text-2xl sm:text-4xl md:text-6xl font-dm-ExLight leading-5 sm:leading-15"
+            className="text-3xl sm:text-4xl md:text-6xl font-dm-ExLight leading-5 sm:leading-15"
           >
             {sliderTexts[currentIndex].h1}{" "}
-            <span className="text-primary text-3xl sm:text-6xl font-nexa-bold inline-flex items-center gap-0 ">
+            <span className="text-primary text-4xl sm:text-6xl font-nexa-bold inline-flex items-center gap-0 ">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: "30px" }}

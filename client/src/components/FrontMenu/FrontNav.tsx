@@ -22,9 +22,12 @@ const FrontNav: React.FC = () => {
       <section className="max-w-[1536px] mx-auto relative">
         <nav className="grid grid-cols-12 items-center  ">
 
-          {/* Logo */}
           <div className="col-span-6 md:col-span-2 flex items-center justify-start px-5 sm:px-9">
-            <img src="/images/whitelogo.png" className="w-20 sm:w-30" alt="logo" />
+            <img
+              src="/images/pngmainlogo.png"
+              className="w-20 sm:w-30 filter brightness-0 invert"
+              alt="logo"
+            />
           </div>
 
           {/* Menu Icon */}
@@ -37,7 +40,7 @@ const FrontNav: React.FC = () => {
             </button>
           </div>
 
-          {/* Collapsible Menu */}
+          
           {/* Collapsible Menu */}
           <div
             className={`
@@ -46,11 +49,15 @@ const FrontNav: React.FC = () => {
     
 
     /* Desktop */
-    md:static md:w-auto md:bg-transparent md:opacity-100 md:pointer-events-auto md:translate-x-0
+    md:static md:w-auto md:bg-transparent md:opacity-100  md:translate-x-0
 
     /* Mobile */
     
-    ${isOpen ? "translate-x-0 opacity-100 pointer-events-auto fixed top-11 left-0 w-full bg-black/50 sm:bg-none sm:backdrop-0 backdrop-blur-xl z-50" : "-translate-x-full opacity-0 pointer-events-none"}
+   ${isOpen
+  ? "translate-x-0 opacity-100 fixed top-11 left-0 w-full block bg-black/50 sm:bg-none sm:backdrop-0 backdrop-blur-xl z-50"
+  : "translate-x-full opacity-0  fixed top-11 left-0 w-full bg-transparent"}
+
+
   `}
           >
 

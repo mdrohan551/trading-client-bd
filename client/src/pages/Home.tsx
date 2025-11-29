@@ -3,7 +3,6 @@ import Banner from '../components/banner/Banner'
 import FrontNav from '../components/FrontMenu/FrontNav'
 import TopNav from '../components/TopNav/TopNav'
 import CompaniesLogo from '../components/CompaniesLogo'
-import ServicesText from '../components/services/ServicesText'
 import ServicesImage from '../components/services/ServicesImage'
 
 import { gsap } from "gsap"
@@ -62,10 +61,7 @@ const Home = (): React.ReactElement => {
       </div>
       <CompaniesLogo />
       <div className='grid grid-cols-12 container mx-auto mt-0 sm:mt-10 sm:px-3 md:px-3 px-3 gap-6'>
-        <div className="col-span-12 md:col-span-6">
-          <ServicesText />
-        </div>
-        <div className="col-span-12 md:col-span-6">
+        <div className="col-span-12 md:col-span-12 ">
           <ServicesImage />
         </div>
       </div>
