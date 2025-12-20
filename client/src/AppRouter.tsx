@@ -4,6 +4,7 @@ import Loader from "./Layout/Loader";
 import Notfound from "./Layout/Notfound";
 import { Toaster } from "react-hot-toast";
 import BusinessDetails from "./components/OurBuisness/BusinessDetails";
+import ContactPage from "./pages/ContactPage";
 
 // Lazy loaded components
 const Home = lazy(() => import("./pages/Home")); // ✅ fixed path
@@ -18,6 +19,7 @@ const AppRouter: React.FC = () => {
             <Route path="*" element={<Notfound />} />
             <Route path="/" element={<Home />} />
             <Route path="/business-details/:id" element={<BusinessDetails />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

@@ -469,3 +469,63 @@ export const segmentData: Segmentsuccess[] = [
         ],
     },
 ];
+
+
+
+
+// constact page 
+
+
+export interface Department {
+  title: string;
+  details: ContactDetail[];
+}
+
+export interface ContactDetail {
+  email: string;
+  phone?: string;
+  locationUrl?: string; // এটি যোগ করা হয়েছে
+  iconType: 'ship' | 'office' | 'ops' | 'tech' | 'buy';
+}
+
+export const contactDepartments: Department[] = [
+  {
+    title: "Ship Chandler Department",
+    details: [{ email: "ship-chandler@aoslandtc.com", phone: "+880 1886337477", iconType: 'ship' }]
+  },
+  {
+    title: "Office",
+    details: [{ 
+      email: "info@aoslandtc.com", 
+      iconType: 'office',
+      // এখানে আপনার গুগল ম্যাপস এর লিঙ্কটি দিন
+      locationUrl: "https://maps.app.goo.gl/dJmhaM8J52bmtTJYA" 
+    }]
+  },
+  {
+    title: "Export Department",
+    details: [{ email: "import@aoslandtc.com", phone: "+880 1727380822", iconType: 'ship' }]
+  },
+  {
+    title: "Import Department",
+    details: [{ email: "import@aoslandtc.com", phone: "+880 1948999055", iconType: 'ship' }]
+  }
+];
+
+export const footerDepartments: Department[] = [
+  {
+    title: "OPERATIONS",
+    details: [{ email: "operation@aoslandtc.com", iconType: 'ops' }]
+  },
+  {
+    title: "TECHNICAL/SUPPLY",
+    details: [
+      { email: "technical@aoslandtc.com", iconType: 'tech' },
+      { email: "supply@aoslandtc.com", iconType: 'tech' }
+    ]
+  },
+  {
+    title: "PURCHASING",
+    details: [{ email: "purchase@aoslandtc.com", iconType: 'buy' }]
+  }
+];

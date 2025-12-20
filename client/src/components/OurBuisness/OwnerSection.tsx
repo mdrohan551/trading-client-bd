@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Confetti from "react-confetti";
-import { motion, type Variants  } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { Loader2 } from "lucide-react"; // লোডিং দেখানোর জন্য
 import {
   ExtraInfoData,
   formFields,
@@ -24,6 +25,7 @@ const fadeInUp: Variants = {
 const OwnerSection: React.FC = () => {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false); // নতুন স্টেট
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -40,10 +42,32 @@ const OwnerSection: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 4000);
+    setLoading(true);
+
+    // আপনার গুগল অ্যাপ স্ক্রিপ্ট URL টি নিচে বসান
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwD5zzXh2EoQ9xLbOzpMyllYIa693e4j5v6VytmueciFYyYQ8x83-tLT6hwER893Zy1JA/exec';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      setShowPopup(true);
+      setFormData({}); // স্টেট ক্লিয়ার
+      (e.target as HTMLFormElement).reset(); // ফর্ম রিসেট
+      setTimeout(() => setShowPopup(false), 4000);
+    } catch (error) {
+      console.error("Error!", error);
+      alert("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -280,9 +304,11 @@ const OwnerSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full cursor-pointer bg-primary text-white font-medium py-2 rounded-lg hover:bg-white hover:text-black hover:ring-primary hover:ring transition"
+              disabled={loading}
+              className="w-full cursor-pointer bg-primary text-white font-medium py-2 rounded-lg hover:bg-white hover:text-black hover:ring-primary hover:ring transition flex items-center justify-center gap-2"
             >
-              Request Quote
+              {loading && <Loader2 className="animate-spin" size={18} />}
+              {loading ? "Sending..." : "Request Quote"}
             </button>
           </form>
         </motion.div>
